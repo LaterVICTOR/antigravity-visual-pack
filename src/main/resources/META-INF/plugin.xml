@@ -1,0 +1,30 @@
+<idea-plugin>
+  <id>local.antigravity.visualpack</id>
+  <name>Antigravity Visual Pack</name>
+  <version>1.0.0</version>
+  <vendor>Local Visual Adaptation</vendor>
+  <description><![CDATA[
+    Adaptación local de Red One Dark Pro y Material Icon Theme para IntelliJ IDEA.
+    Incluye cuatro temas con esquema del editor, iconos SVG originales para archivos
+    y carpetas y un acceso a la configuración nativa de imagen de fondo.
+    Port no oficial; conserva los avisos de licencia de los autores originales.
+  ]]></description>
+  <idea-version since-build="262" until-build="262.*"/>
+  <depends>com.intellij.modules.platform</depends>
+  <depends>com.intellij.modules.lang</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <themeProvider id="local.red-one-dark-pro.dark" path="/themes/dark.theme.json"/>
+    <themeProvider id="local.red-one-dark-pro.dark-bordered" path="/themes/dark-bordered.theme.json"/>
+    <themeProvider id="local.red-one-dark-pro.mirage" path="/themes/mirage.theme.json"/>
+    <themeProvider id="local.red-one-dark-pro.mirage-bordered" path="/themes/mirage-bordered.theme.json"/>
+    <fileIconProvider implementation="local.visualpack.MaterialFileIcons" order="first"/>
+    <iconProvider implementation="local.visualpack.MaterialPsiIcons" order="first"/>
+  </extensions>
+  <actions>
+    <action id="local.visualpack.Background" class="local.visualpack.BackgroundAction"
+            text="Background: configurar imagen de fondo"
+            description="Abre Apariencia; pulsa Background Image para elegir imagen, opacidad y posición">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>

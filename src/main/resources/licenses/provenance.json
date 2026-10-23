@@ -1,0 +1,15 @@
+{
+  "materialIconTheme": {
+    "version": "5.34.0",
+    "source": "https://github.com/material-extensions/vscode-material-icon-theme",
+    "license": "MIT"
+  },
+  "redOneDarkPro": {
+    "version": "1.5.0",
+    "source": "https://gitlab.com/giladgd/red-one-dark-pro",
+    "license": "MIT"
+  },
+  "background": {
+    "implementation": "Native IntelliJ Background Image; no source copied from Katsute Background"
+  }
+}
