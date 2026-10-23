@@ -41,6 +41,7 @@ run(javac,['-encoding','UTF-8','-proc:none','--release','21','-classpath',classp
 // permiten al compilador canonicalizar directorios del usuario como classpath.
 run(javac,['-encoding','UTF-8','-proc:none','--release','21','-d',testClasses,
   path.join(root,'src/main/java/local/visualpack/MaterialMappings.java'),
+  path.join(root,'src/main/java/local/visualpack/BackgroundImages.java'),
   ...files(path.join(root,'src/test/java'),'.java')]);
 
 const plugin = fs.readFileSync(path.join(resources,'META-INF/plugin.xml'),'utf8');
@@ -61,18 +62,23 @@ for (const filename of themes) {
 const jarPath = path.join(stage,'antigravity-visual-pack.jar');
 run(jar,['--create','--file',jarPath,'-C',classes,'.','-C',resources,'.']);
 const testJar = path.join(root,'build/verification.jar');
-// Sólo se empaqueta la prueba; MaterialMappings se carga desde el JAR final.
-run(jar,['--create','--file',testJar,'-C',testClasses,'local/visualpack/VerifyPack.class']);
+// Sólo se empaquetan pruebas: las clases probadas se cargan desde el JAR final.
+run(jar,['--create','--file',testJar,'-C',testClasses,'local/visualpack/VerifyPack.class',
+  '-C',testClasses,'local/visualpack/VerifyBackgroundImages.class']);
 run(java,['-Djava.awt.headless=true','-classpath',[testJar,jarPath].join(path.delimiter),
   'local.visualpack.VerifyPack',resources]);
-const artifact = path.join(dist,'antigravity-visual-pack-1.0.0.zip');
+run(java,['-Djava.awt.headless=true','-classpath',[testJar,jarPath].join(path.delimiter),
+  'local.visualpack.VerifyBackgroundImages']);
+const version = plugin.match(/<version>([^<]+)<\/version>/)?.[1];
+if (!version || !/^\d+\.\d+\.\d+$/.test(version)) throw new Error('Versión de plugin inválida.');
+const artifact = path.join(dist,`antigravity-visual-pack-${version}.zip`);
 run(jar,['--create','--no-manifest','--file',artifact,'-C',path.join(root,'build/staging'),'.']);
 const sha256 = crypto.createHash('sha256').update(fs.readFileSync(artifact)).digest('hex');
 fs.writeFileSync(artifact+'.sha256',sha256+'  '+path.basename(artifact)+'\n');
 fs.writeFileSync(path.join(dist,'validation.json'),JSON.stringify({
   ide:product.version,build:product.buildNumber,artifact:path.basename(artifact),sha256,
   themes:themes.length,icons:files(path.join(resources,'material-icons'),'.svg').length,
-  checks:['Compilación contra SDK local','Asociaciones de iconos','Recursos completos','SVG/XML válidos','Temas y esquemas registrados','Prueba desde JAR final'],
+  checks:['Compilación contra SDK local','Asociaciones de iconos','Recursos completos','SVG/XML válidos','Temas y esquemas registrados','Prueba desde JAR final','Carpetas, subcarpetas, rotación, cancelación y fotos dañadas'],
   visualReview:false,installed:false,
 },null,2)+'\n');
 console.log(`Paquete generado: ${artifact}\nSHA-256: ${sha256}`);

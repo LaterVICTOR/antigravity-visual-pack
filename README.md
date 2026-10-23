@@ -6,17 +6,32 @@ Compatible con IntelliJ IDEA **2026.2.x**; compilado contra la instalación 2026
 
 ## Instalación
 
-1. Descarga [antigravity-visual-pack-1.0.0.zip](downloads/antigravity-visual-pack-1.0.0.zip?raw=true).
+1. Descarga [antigravity-visual-pack-1.1.0.zip](downloads/antigravity-visual-pack-1.1.0.zip?raw=true).
 2. Abre **Settings → Plugins** con `Ctrl + Alt + S`.
 3. Pulsa el engranaje y selecciona **Install Plugin from Disk…**.
 4. Elige el ZIP descargado, sin descomprimirlo, y reinicia si IDEA lo solicita.
 5. En **Appearance & Behavior → Appearance → Theme**, selecciona una variante:
    **Red One Dark Pro | Dark**, **Dark Bordered**, **Mirage** o **Mirage Bordered**.
 6. Los iconos de archivos y carpetas se activan al cargar el plugin.
-7. Para el fondo, abre un proyecto y usa **Tools → Background: configurar imagen de fondo**.
-   En Apariencia, pulsa **Background Image**. Elige la imagen, opacidad, posición
-   y si se aplica sólo al proyecto. Se puede usar una imagen para **Editor and Tools**
-   y otra para **Empty Frame**. IDEA guarda estos ajustes.
+7. Para fotos desde carpetas, abre **Tools → Background: configurar carpetas de fotos**
+   o **Settings → Appearance & Behavior → Antigravity Visual Pack**.
+   Activa el cambio automático, pulsa **Añadir carpetas…** y elige una o varias.
+   Puedes incluir subcarpetas, usar orden aleatorio, ajustar la opacidad y el intervalo
+   (5 minutos inicialmente). Pulsa **Apply / Aplicar** para cargar la primera foto.
+   **Tools → Background: siguiente foto** permite avanzar manualmente.
+   Las carpetas y los ajustes se guardan y la presentación vuelve al abrir un proyecto.
+8. Para una foto individual, desactiva la presentación y usa
+   **Tools → Background: configurar una imagen (IDEA)**. En Apariencia pulsa
+   **Background Image** para elegir imagen, opacidad y posición.
+
+La presentación usa imágenes PNG, JPG, JPEG, GIF y BMP locales; no anima GIF.
+Vuelve a explorar las carpetas en cada cambio, omite archivos dañados y no sigue
+enlaces a otras carpetas. Se aplica globalmente al editor y las herramientas;
+opcionalmente también al espacio vacío. Los fondos nativos configurados con
+**This project only** tienen prioridad: retira ese fondo desde el selector nativo
+si quieres ver las fotos de las carpetas en ese proyecto.
+Al desactivar la presentación o descargar el plugin se recupera el fondo global
+anterior, salvo que hayas cambiado ese fondo desde el selector nativo.
 
 Si ya tienes otro plugin que sustituye iconos de archivos, desactívalo para evitar
 que ambos proveedores compitan. Para retirar esta adaptación, desinstala el plugin
@@ -37,7 +52,8 @@ en el diálogo nativo de Background Image.
   se usa el icono de carpeta normal. La personalización dinámica de colores y
   paquetes de Material Icon Theme no forma parte de este port.
 - Background permite imagen estática, opacidad y posición con el soporte nativo.
-  No incluye el CSS, desenfoque, rotación ni los fondos distintos por panel de
+  Añade una presentación configurable desde varias carpetas. No incluye el CSS,
+  desenfoque, rotación de la imagen ni los fondos distintos por panel de
   la extensión original. No se copia ni ejecuta el código de Katsute Background.
 - No se importan las preferencias privadas de Antigravity ni imágenes personales.
   La selección de tema y fondo se realiza dentro de IDEA.
@@ -46,7 +62,9 @@ en el diálogo nativo de Background Image.
 
 Compilación contra IntelliJ IDEA 2026.2.3 completada: 8.321 comprobaciones de
 asociaciones y recursos y 1.243 archivos SVG/XML válidos. La apariencia dentro
-de IntelliJ todavía no se ha verificado visualmente.
+de IntelliJ todavía no se ha verificado visualmente. Las pruebas de carpetas usan
+archivos reales para comprobar subcarpetas, duplicados, rotación, cancelación,
+imágenes dañadas y rutas con espacios, comas y caracteres Unicode.
 
 ## Construcción
 

@@ -1,12 +1,12 @@
 <idea-plugin>
   <id>local.antigravity.visualpack</id>
   <name>Antigravity Visual Pack</name>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
   <vendor>Local Visual Adaptation</vendor>
   <description><![CDATA[
     Adaptación local de Red One Dark Pro y Material Icon Theme para IntelliJ IDEA.
     Incluye cuatro temas con esquema del editor, iconos SVG originales para archivos
-    y carpetas y un acceso a la configuración nativa de imagen de fondo.
+    y carpetas, presentación de fotos desde carpetas y acceso al fondo nativo.
     Port no oficial; conserva los avisos de licencia de los autores originales.
   ]]></description>
   <idea-version since-build="262" until-build="262.*"/>
@@ -19,11 +19,23 @@
     <themeProvider id="local.red-one-dark-pro.mirage-bordered" path="/themes/mirage-bordered.theme.json"/>
     <fileIconProvider implementation="local.visualpack.MaterialFileIcons" order="first"/>
     <iconProvider implementation="local.visualpack.MaterialPsiIcons" order="first"/>
+    <applicationConfigurable parentId="appearance" instance="local.visualpack.BackgroundConfigurable"
+                             id="local.visualpack.background" displayName="Antigravity Visual Pack"/>
+    <postStartupActivity implementation="local.visualpack.BackgroundStartup"/>
   </extensions>
   <actions>
     <action id="local.visualpack.Background" class="local.visualpack.BackgroundAction"
-            text="Background: configurar imagen de fondo"
-            description="Abre Apariencia; pulsa Background Image para elegir imagen, opacidad y posición">
+            text="Background: configurar carpetas de fotos"
+            description="Elige carpetas, cambio automático, subcarpetas y opacidad del fondo">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+    </action>
+    <action id="local.visualpack.NextBackground" class="local.visualpack.NextBackgroundAction"
+            text="Background: siguiente foto" description="Muestra otra foto de las carpetas guardadas">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+    </action>
+    <action id="local.visualpack.NativeBackground" class="local.visualpack.NativeBackgroundAction"
+            text="Background: configurar una imagen (IDEA)"
+            description="Abre Apariencia; desactiva la presentación para usar una sola imagen">
       <add-to-group group-id="ToolsMenu" anchor="last"/>
     </action>
   </actions>
