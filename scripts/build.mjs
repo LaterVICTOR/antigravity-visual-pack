@@ -9,13 +9,19 @@ const args = process.argv.slice(2);
 const ide = args.includes('--ide') ? args[args.indexOf('--ide')+1] : process.env.IDEA_HOME;
 if (!ide) throw new Error('Indica --ide con la carpeta de IntelliJ IDEA.');
 const product = JSON.parse(fs.readFileSync(path.join(ide,'product-info.json'),'utf8'));
-if (!product.buildNumber.startsWith('262.')) throw new Error(`Esta adaptación requiere IDEA 2026.2 (262), recibido ${product.buildNumber}`);
+const resources = path.join(root,'src/main/resources');
+const plugin = fs.readFileSync(path.join(resources,'META-INF/plugin.xml'),'utf8');
+const compatibility = plugin.match(/<idea-version since-build="(\d+)" until-build="(\d+)\.\*"\s*\/>/);
+if (!compatibility) throw new Error('Falta un rango de compatibilidad válido en plugin.xml.');
+const branch = Number(product.buildNumber.split('.')[0]);
+if (!Number.isInteger(branch) || branch < Number(compatibility[1]) || branch > Number(compatibility[2])) {
+  throw new Error(`El SDK ${product.buildNumber} queda fuera del rango ${compatibility[1]}–${compatibility[2]}.* declarado en plugin.xml.`);
+}
 const bin = path.join(ide,'jbr/bin');
 const executable = name => path.join(bin, name + (process.platform === 'win32' ? '.exe' : ''));
 const javac = executable('javac');
 const java = executable('java');
 const jar = fs.existsSync(executable('jar')) ? executable('jar') : 'jar';
-const resources = path.join(root,'src/main/resources');
 fs.copyFileSync(path.join(root,'LICENSE'),path.join(resources,'licenses/Visual-Pack-MIT.txt'));
 const classes = path.join(root,'build/classes');
 const testClasses = path.join(root,'build/test-classes');
@@ -44,7 +50,6 @@ run(javac,['-encoding','UTF-8','-proc:none','--release','21','-d',testClasses,
   path.join(root,'src/main/java/local/visualpack/BackgroundImages.java'),
   ...files(path.join(root,'src/test/java'),'.java')]);
 
-const plugin = fs.readFileSync(path.join(resources,'META-INF/plugin.xml'),'utf8');
 const themes = files(path.join(resources,'themes'),'.theme.json');
 if (themes.length !== 4) throw new Error('Deben existir las cuatro variantes del tema.');
 for (const filename of themes) {

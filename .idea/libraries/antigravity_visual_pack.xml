@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="antigravity-visual-pack">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/build/staging/antigravity-visual-pack/lib/antigravity-visual-pack.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

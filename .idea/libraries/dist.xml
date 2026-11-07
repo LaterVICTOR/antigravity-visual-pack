@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="dist">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/antigravity-visual-pack-1.1.0.zip!/" />
+      <root url="jar://$PROJECT_DIR$/dist/antigravity-visual-pack-1.0.0.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

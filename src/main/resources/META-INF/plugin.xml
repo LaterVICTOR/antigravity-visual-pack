@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>local.antigravity.visualpack</id>
   <name>Antigravity Visual Pack</name>
-  <version>1.1.0</version>
+  <version>1.1.1</version>
   <vendor>Local Visual Adaptation</vendor>
   <description><![CDATA[
     Adaptación local de Red One Dark Pro y Material Icon Theme para IntelliJ IDEA.
@@ -9,7 +9,7 @@
     y carpetas, presentación de fotos desde carpetas y acceso al fondo nativo.
     Port no oficial; conserva los avisos de licencia de los autores originales.
   ]]></description>
-  <idea-version since-build="262" until-build="262.*"/>
+  <idea-version since-build="262" until-build="263.*"/>
   <depends>com.intellij.modules.platform</depends>
   <depends>com.intellij.modules.lang</depends>
   <extensions defaultExtensionNs="com.intellij">

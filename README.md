@@ -2,11 +2,11 @@
 
 Adaptación no oficial de **Material Icon Theme 5.34.0** y **Red One Dark Pro 1.5.0**.
 El fondo utiliza la función nativa de IntelliJ. No requiere instalar temas parecidos.
-Compatible con IntelliJ IDEA **2026.2.x**; compilado contra la instalación 2026.2.3.
+Compatible con IntelliJ IDEA **2026.2.x–2026.3.x**; versión 1.1.1 compilada contra 2026.3 (263.7307.200).
 
 ## Instalación
 
-1. Descarga [antigravity-visual-pack-1.1.0.zip](downloads/antigravity-visual-pack-1.1.0.zip?raw=true).
+1. Descarga [antigravity-visual-pack-1.1.1.zip](downloads/antigravity-visual-pack-1.1.1.zip?raw=true).
 2. Abre **Settings → Plugins** con `Ctrl + Alt + S`.
 3. Pulsa el engranaje y selecciona **Install Plugin from Disk…**.
 4. Elige el ZIP descargado, sin descomprimirlo, y reinicia si IDEA lo solicita.
@@ -60,7 +60,7 @@ en el diálogo nativo de Background Image.
 
 ## Estado de validación
 
-Compilación contra IntelliJ IDEA 2026.2.3 completada: 8.321 comprobaciones de
+Compilación contra IntelliJ IDEA 2026.3 (263.7307.200) completada: 8.321 comprobaciones de
 asociaciones y recursos y 1.243 archivos SVG/XML válidos. La apariencia dentro
 de IntelliJ todavía no se ha verificado visualmente. Las pruebas de carpetas usan
 archivos reales para comprobar subcarpetas, duplicados, rotación, cancelación,
@@ -68,12 +68,16 @@ imágenes dañadas y rutas con espacios, comas y caracteres Unicode.
 
 ## Construcción
 
-Requiere Node.js y una instalación de IntelliJ IDEA 2026.2 con JBR que incluya `javac`.
+Requiere Node.js y una instalación de IntelliJ IDEA 2026.2 o 2026.3 con JBR que incluya `javac`.
 No descarga dependencias. Desde esta carpeta:
 
 ```powershell
 node scripts/build.mjs --ide "C:\Program Files\JetBrains\IntelliJ IDEA 2026.2.3"
 ```
+
+La ruta del ejemplo puede conservar el nombre 2026.2.3 después de actualizar IDEA.
+Usa la carpeta de tu instalación actual; el script comprueba su build real contra
+el rango declarado en `plugin.xml`.
 
 El script compila contra los JAR locales, verifica las asociaciones y recursos,
 valida los XML/SVG y genera el ZIP instalable. Fuentes y assets importados están
