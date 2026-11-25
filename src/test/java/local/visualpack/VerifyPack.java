@@ -50,6 +50,21 @@ public final class VerifyPack {
                 xmlFiles++;
             }
         }
+        if (arguments.length > 1) {
+            var doc = factory.newDocumentBuilder().parse(Path.of(arguments[1]).toFile());
+            var plugins = doc.getElementsByTagName("plugin");
+            check(plugins.getLength() == 1, "updatePlugins.xml debe declarar exactamente un <plugin>");
+            var plugin = (org.w3c.dom.Element) plugins.item(0);
+            check(!plugin.getAttribute("id").isBlank(), "Falta id en updatePlugins.xml");
+            check(plugin.getAttribute("url").startsWith("https://"), "URL HTTPS inválida en updatePlugins.xml");
+            check(plugin.getAttribute("version").matches("\\d+\\.\\d+\\.\\d+"), "Versión inválida en updatePlugins.xml");
+            var ideaVersions = plugin.getElementsByTagName("idea-version");
+            check(ideaVersions.getLength() == 1, "Falta <idea-version> en updatePlugins.xml");
+            var ideaVersion = (org.w3c.dom.Element) ideaVersions.item(0);
+            check(!ideaVersion.getAttribute("since-build").isBlank(), "Falta since-build en updatePlugins.xml");
+            check(!ideaVersion.getAttribute("until-build").isBlank(), "Falta until-build en updatePlugins.xml");
+            xmlFiles++;
+        }
         System.out.println("Verificación correcta: " + assertions + " comprobaciones; " + xmlFiles + " SVG/XML válidos.");
     }
 

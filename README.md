@@ -6,21 +6,36 @@ Compatible con IntelliJ IDEA **2026.2.x–2026.3.x**; versión 1.1.1 compilada c
 
 ## Instalación
 
+### Desde repositorio personalizado (recomendado, con actualizaciones automáticas)
+
+1. Abre **Settings → Plugins** con `Ctrl + Alt + S`.
+2. Pulsa el engranaje y selecciona **Manage Plugin Repositories…**.
+3. Pulsa **+** y añade esta URL:
+   `https://raw.githubusercontent.com/LaterVICTOR/antigravity-visual-pack/main/updatePlugins.xml`
+4. Pulsa **OK**, busca **Antigravity Visual Pack** en **Marketplace**, instálalo y reinicia si IDEA lo solicita.
+
+Si ya lo instalaste desde ZIP y IntelliJ IDEA 2026.3 muestra *«Cannot update plugin. Choose where it was installed from to receive updates»*: añade la URL anterior en **Manage Plugin Repositories…**, luego pulsa **Choose where to get updates from** en el plugin y elige ese repositorio (o ejecuta **Help → Find Action → `Initialize Missing Plugin Update Sources`**).
+
+### Instalación manual desde disco
+
 1. Descarga [antigravity-visual-pack-1.1.1.zip](downloads/antigravity-visual-pack-1.1.1.zip?raw=true).
 2. Abre **Settings → Plugins** con `Ctrl + Alt + S`.
 3. Pulsa el engranaje y selecciona **Install Plugin from Disk…**.
 4. Elige el ZIP descargado, sin descomprimirlo, y reinicia si IDEA lo solicita.
-5. En **Appearance & Behavior → Appearance → Theme**, selecciona una variante:
+
+### Configuración de tema, iconos y fondo
+
+1. En **Appearance & Behavior → Appearance → Theme**, selecciona una variante:
    **Red One Dark Pro | Dark**, **Dark Bordered**, **Mirage** o **Mirage Bordered**.
-6. Los iconos de archivos y carpetas se activan al cargar el plugin.
-7. Para fotos desde carpetas, abre **Tools → Background: configurar carpetas de fotos**
+2. Los iconos de archivos y carpetas se activan al cargar el plugin.
+3. Para fotos desde carpetas, abre **Tools → Background: configurar carpetas de fotos**
    o **Settings → Appearance & Behavior → Antigravity Visual Pack**.
    Activa el cambio automático, pulsa **Añadir carpetas…** y elige una o varias.
    Puedes incluir subcarpetas, usar orden aleatorio, ajustar la opacidad y el intervalo
    (5 minutos inicialmente). Pulsa **Apply / Aplicar** para cargar la primera foto.
    **Tools → Background: siguiente foto** permite avanzar manualmente.
    Las carpetas y los ajustes se guardan y la presentación vuelve al abrir un proyecto.
-8. Para una foto individual, desactiva la presentación y usa
+4. Para una foto individual, desactiva la presentación y usa
    **Tools → Background: configurar una imagen (IDEA)**. En Apariencia pulsa
    **Background Image** para elegir imagen, opacidad y posición.
 
@@ -80,7 +95,9 @@ Usa la carpeta de tu instalación actual; el script comprueba su build real cont
 el rango declarado en `plugin.xml`.
 
 El script compila contra los JAR locales, verifica las asociaciones y recursos,
-valida los XML/SVG y genera el ZIP instalable. Fuentes y assets importados están
+valida los XML/SVG, actualiza `updatePlugins.xml` y genera el ZIP instalable.
+Añade `--publish` para copiar también el ZIP y su `.sha256` a `downloads/` antes
+de subir una nueva versión al repositorio. Fuentes y assets importados están
 incluidos para poder reconstruirlo sin Antigravity.
 
 Para volver a importar assets desde las extensiones instaladas:
