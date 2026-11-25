@@ -2,7 +2,7 @@
 
 Adaptación no oficial de **Material Icon Theme 5.34.0** y **Red One Dark Pro 1.5.0**.
 El fondo utiliza la función nativa de IntelliJ. No requiere instalar temas parecidos.
-Compatible con IntelliJ IDEA **2026.2.x–2026.3.x**; versión 1.1.1 compilada contra 2026.3 (263.7307.200).
+Compatible con IntelliJ IDEA **2026.2.x–2026.3.x**; versión 1.1.2 compilada contra 2026.3 (263.7307.200).
 
 ## Instalación
 
@@ -18,7 +18,7 @@ Si ya lo instalaste desde ZIP y IntelliJ IDEA 2026.3 muestra *«Cannot update pl
 
 ### Instalación manual desde disco
 
-1. Descarga [antigravity-visual-pack-1.1.1.zip](downloads/antigravity-visual-pack-1.1.1.zip?raw=true).
+1. Descarga [antigravity-visual-pack-1.1.2.zip](downloads/antigravity-visual-pack-1.1.2.zip?raw=true).
 2. Abre **Settings → Plugins** con `Ctrl + Alt + S`.
 3. Pulsa el engranaje y selecciona **Install Plugin from Disk…**.
 4. Elige el ZIP descargado, sin descomprimirlo, y reinicia si IDEA lo solicita.

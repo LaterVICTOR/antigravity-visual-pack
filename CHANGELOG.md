@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.1.2
+
+- Nuevo icono vectorial del plugin (`META-INF/pluginIcon.svg`) de Late Studios.
+- Repositorio personalizado `updatePlugins.xml` para actualizaciones automáticas en IntelliJ IDEA 2026.3+.
+
+## 1.1.1
+
+- Compatibilidad ampliada a IntelliJ IDEA 2026.3 (`until-build="263.*"`).
+
 ## 1.1.0
 
 - Fondo automático desde varias carpetas, con subcarpetas opcionales.

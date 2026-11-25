@@ -38,6 +38,7 @@ public final class VerifyPack {
             }
         }
 
+        check(VerifyPack.class.getResource("/META-INF/pluginIcon.svg") != null, "Falta META-INF/pluginIcon.svg en el JAR");
         Path resources = Path.of(arguments[0]);
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
